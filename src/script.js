@@ -84,9 +84,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 /**
  * Animate
  */
-const clock = new THREE.Clock();
-let time,
-  mouseX = 0,
+let mouseX = 0,
   mouseY = 0,
   prevY = 0;
 
@@ -94,13 +92,10 @@ window.onmousemove = e => {
   prevY = mouseY;
   mouseX = e.clientX / window.innerWidth - 0.5;
   mouseY = -e.clientY / window.innerHeight;
-  camera.position.z += mouseY - prevY;
+  camera.position.z += (mouseY - prevY) * 2;
 };
 
 (function animate() {
-  time = clock.getElapsedTime();
-
-  testSphere.rotation.y = time / 2;
   testSphere.rotation.y += mouseX - testSphere.rotation.y;
 
   // Render
